@@ -25,7 +25,7 @@
 
 * Android - Minimum SDK 23
 * iOS - **XCode 9.2 or higher** required
-  * _Please set `<preference name="UseSwiftLanguageVersion" value="3.2" />` in your config.xml_
+  * _Please set `<preference name="UseSwiftLanguageVersion" value="4.0" />` in your config.xml_
 
 
 ## How to use
@@ -85,15 +85,16 @@ Fingerprint.isAvailable(isAvailableSuccess, isAvailableError);
     }
 
     function isAvailableError(message) {
-      alert(message);
+      // 'message' will be an object with an error code and message
+      console.log(message);
     }
 ```
 
 ### Show authentication dialogue
 ```javascript
 Fingerprint.show({
-      clientId: "Fingerprint-Demo",
-      clientSecret: "password" //Only necessary for Android
+      clientId: "Fingerprint-Demo", //Android: Used for encryption. iOS: used for dialogue if no `localizedReason` is given.
+      clientSecret: "o7aoOMYUbyxaD23oFAnJ" //Necessary for Android encrpytion of keys. Use random secret key.
     }, successCallback, errorCallback);
 
     function successCallback(){
